@@ -15,7 +15,7 @@ function reducer(state = { todo: [] }, action) {
       return Object.assign({}, state, { todos: action.data })
     case 'TOGGLE_LOADING':
       return Object.assign({}, state, { isLoading: action.data })
-    case 'ADD_TEXT':
+    case 'ADD_TODO':
       return Object.assign({}, state, { todos: state.todos.concat(action.data) })
     case 'TEXT_EXISTS':
       return Object.assign({}, state, { isText: action.data });

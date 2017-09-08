@@ -18,7 +18,7 @@ module.exports = {
  * checkJsonExists
  */
 function checkJsonExists() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     fs.stat(jsonFilePath, (err, stats) => {
       if(err) {
         resolve(false)
@@ -33,7 +33,7 @@ function checkJsonExists() {
  * readJson
  */
 function readJson() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     fs.readFile(jsonFilePath, (err, data) => {
       if(err) {
         resolve(defaultJSON)
@@ -59,7 +59,7 @@ function guid() {
  */
 function writeJson(json) {
   return new Promise((resolve, reject) => {
-    fs.writeFile(jsonFilePath, JSON.stringify(json), (err) => {
+    fs.writeFile(jsonFilePath, JSON.stringify(json), err => {
       if(err) {
         console.error(err)
         reject(err)
@@ -74,14 +74,14 @@ function writeJson(json) {
  * getTodoList:common
  */
 function getTodoList() {
-  return new Promise((resolve) => {
-    checkJsonExists().then((exists) => {
+  return new Promise(resolve => {
+    checkJsonExists().then(exists => {
       if(exists) {
         return readJson()
       } else {
         resolve(defaultJson)
       }
-    }).then((json) => {
+    }).then(json => {
       resolve(json)
     })
   })
@@ -91,18 +91,18 @@ function getTodoList() {
  * getTodo:common
  */
 function getTodo(id) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     if(!id) {
       resolve(null)
       return
     }
-    checkJsonExists().then((exists) => {
+    checkJsonExists().then(exists => {
       if(exists) {
         return readJson()
       } else {
         resolve(null)
       }
-    }).then((json) => {
+    }).then(json => {
       let todos = json.todos
       if(!todos) {
         resolve(null)

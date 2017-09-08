@@ -33,7 +33,7 @@ function Todo() {
  * GET
  */
 const onRouteGet = (req, res) => {
-  getTodo(req.params.id).then((obj) => {
+  getTodo(req.params.id).then(obj => {
     let result = obj
     if(result == null) {
       result = {}
@@ -57,7 +57,7 @@ const onRoutePut = (req, res) => {
     return
   }
 
-  modules.getTodoList().then((json) => {
+  modules.getTodoList().then(json => {
     let todos = json.todos
     for(let i = 0, len = todos.length; i < len; i++) {
       let todo = todo[i]
@@ -78,7 +78,7 @@ const onRoutePut = (req, res) => {
  * DELETE
  */
 const onRouteDelete = (req, res) => {
-  modules.getTodoList().then((json) => {
+  modules.getTodoList().then(json => {
     let todos = json.todos
     for(let i = 0, len = todos.length; i < len; i++) {
       let todo = todo[i]
@@ -109,7 +109,7 @@ app.route('/todos/:id')
   })
 
 app.get('/todos', (req, res) => {
-  modules.getTodoList().then((obj) => {
+  modules.getTodoList().then(obj => {
     res.json(obj)
   })
 })
@@ -132,7 +132,7 @@ app.post('/todos', (req, res) => {
     return
   }
 
-  modules.getTodoList().then((json) => {
+  modules.getTodoList().then(json => {
     json.todos.push(todo)
     return modules.writeJson(json)
   }).then((json) => {

@@ -33,10 +33,10 @@ function loadTodos() {
   }
 }
 
-function todoLoaded(tasks) {
+function todoLoaded(todos) {
   return {
     type: 'TODO_LOADED',
-    data: tasks
+    data: todos
   }
 }
 
@@ -58,9 +58,12 @@ function addTodo(newTodo) {
       url: url,
       type: 'POST',
       dataType: 'json',
-      data: { text: newTodo },
+      data: {
+        text: newTodo,
+        complete: false
+      },
     }).done((res) => {
-      dispatch(newTodoAdd(res.id, res.text))
+      dispatch(newAddTodo(res.id, res.text))
       dispatch(toggleLoading(false))
     }).fail((xhr, status, err) => {
       dispatch(toggleLoading(false))
@@ -69,10 +72,10 @@ function addTodo(newTodo) {
   }
 }
 
-function newTodoAdd(id, text) {
+function newAddTodo(id, text) {
   return {
-    type: 'TODO_ADD',
-    data: { id, text }
+    type: 'ADD_TODO',
+    data: {id, text, complete}
   }
 }
 

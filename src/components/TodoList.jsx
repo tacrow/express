@@ -8,18 +8,14 @@ export default class TodoList extends React.Component {
   }
 
   render() {
-    let list = [];
+    let lists = [];
 
     let data = this.props.todos;
 
     for(let i in data) {
-      list.push(<li key={ data[i].id }>{ data[i].name }</li>)
+      lists.push(<li key={ data[i].id }>{ data[i].text }</li>)
     }
 
-    return (
-      <ul>
-        {list}
-      </ul>
-    );
+    return (<ul>{lists}</ul>);
   }
 }
